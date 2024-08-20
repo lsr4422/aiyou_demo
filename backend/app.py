@@ -44,10 +44,10 @@ async def generate_file(text: str = Form(...)):
     try:
         # 외부 API에 POST 요청 보내기
         print('try')
-        response = requests.post('http://aiyou_con:8000/ai', params={'prompt': input_text})
-
+        time.sleep(30)
+        response = requests.post('http://aiyou_backend_app:8000/ai', params={'prompt': input_text})
         response.raise_for_status()  # 요청이 성공적인지 확인
-
+    
         # ZIP 파일을 반환하는 경우
         if response.headers['Content-Type'] == 'application/zip':
             # 응답 데이터를 바이너리 스트림으로 변환
